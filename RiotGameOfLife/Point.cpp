@@ -20,7 +20,6 @@ const std::vector<Point> Point::neighbours() const
 	};
 }
 
-//TODO: could be faster to make custom hash?
 bool Point::operator<(const Point& rhs) const
 {
 	return std::tie(x, y) < std::tie(rhs.x, rhs.y);

@@ -5,6 +5,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+
 constexpr int TICK = 100;
 
 int main(int argc, char* argv[])
@@ -20,7 +21,8 @@ int main(int argc, char* argv[])
         Game::GetInstance().PrintGeneration();
         Game::GetInstance().RenderGeneration();
         //test to see if render is rendering each square.
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        //std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        system("pause");
         Game::GetInstance().GetNextGeneration();
         i++;
     }

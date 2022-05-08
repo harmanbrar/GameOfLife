@@ -7,12 +7,11 @@ void Game::FillActiveBoard()
     for (const auto& alivePosition : aliveCells)
     {
         //if map has alive position mark position as alive otherwise add it to map.
-        auto found = gameBoard.find(alivePosition);
-        if (found == gameBoard.end())
+        //auto found = gameBoard.find(alivePosition);
+        auto found = gameBoard[alivePosition];
+        if (found.IsDirty())
         {
-            Cell cell;
-            cell.neighborCount = 0;
-            cell.alive = 1;
+            Cell cell(1, 0);
             gameBoard[alivePosition] = cell;
         }
         else
@@ -22,12 +21,10 @@ void Game::FillActiveBoard()
         //for the given alive position add neighbors into map as dead if neighbor already exists increase neighborcount.
         for (const auto& neighborCell : alivePosition.neighbours())
         {
-            auto foundNeighbour = gameBoard.find(neighborCell);
-            if (foundNeighbour == gameBoard.end())
+            auto foundNeighbour = gameBoard[neighborCell];
+            if (foundNeighbour.IsDirty())
             {
-                Cell cell;
-                cell.neighborCount = 1;
-                cell.alive = 0;
+                Cell cell(0,1);
                 gameBoard[neighborCell] = cell;
             }
             else
